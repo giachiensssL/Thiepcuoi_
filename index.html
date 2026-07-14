@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Chu & Thị Minh | Thiệp Mời Cưới Online</title>
+  <meta name="description" content="Trân trọng kính mời đến dự lễ cưới A Chu & Thị Minh · 19/08/2026 · Bản Giang Ma, Xã Tả Lèng, Tỉnh Lai Châu">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS & PALETTE
+    ═══════════════════════════════════════════ */
+    :root {
+      --cream:      #FAF9F6;
+      --cream-card: #FFFFFF;
+      --cream-alt:  #F2EFE9;
+      --charcoal:   #1A1A1A;
+      --charcoal-2: #4A4A4A;
+      --gold:       #D4AF37;
+      --gold-light: #E8CC6A;
+      --gold-dark:  #B8942A;
+      --f-title:    'Playfair Display', serif;
+      --f-label:    'Cinzel', serif;
+      --f-body:     'Inter', sans-serif;
+      --f-body-alt: 'Montserrat', sans-serif;
+      --f-script:   'Great Vibes', cursive;
+      --col: 430px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    html,body{height:100%;overflow:hidden;}
+    body{background:var(--cream);font-family:var(--f-body);display:flex;justify-content:center;align-items:center;}
+    
+    /* Ambient backdrop matches cream theme */
+    .ambient-bg{position:fixed;inset:0;z-index:0;background:url('./anh1.webp') center/cover no-repeat;filter:blur(60px) brightness(0.96) saturate(0.5);pointer-events:none;}
+    
+    .main-viewport{position:relative;width:100%;height:100vh;max-width:var(--col);background:var(--cream);z-index:2;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,0.08);}
+    .main-viewport.unlocked{overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;}
+    .main-viewport::-webkit-scrollbar{width:3px;}
+    .main-viewport::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+    /* ═══════════════════════════════════════════
+       SPARKLING CANVAS (Now floats over the cover as well)
+    ═══════════════════════════════════════════ */
+    #sparkleCanvas {
+      position:absolute;inset:0;z-index:102;pointer-events:none;
+    }
+
+    /* ═══════════════════════════════════════════
+       GATE (Redesigned: elegant Western European style with gold foil reflection and shimmer stars)
+    ═══════════════════════════════════════════ */
+    #gate{
+      position:absolute;inset:0;z-index:100;
+      background:var(--cream);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      overflow:hidden;transition:opacity 0.9s ease, transform 0.9s ease;
+    }
+    #gate.hide{opacity:0;transform:scale(1.03);pointer-events:none;}
+
+    /* Classic double gold card borders */
+    .gate-card-border{position:absolute;inset:15px;border:1px solid var(--gold);pointer-events:none;z-index:101;}
+    .gate-card-border-inner{position:absolute;inset:19px;border:0.5px solid rgba(212,175,55,0.4);pointer-events:none;z-index:101;}
+
+    /* Rococo Corner Flourishes for Gate Cover Frame */
+    .gate-corner-flourish {
+      position:absolute;width:44px;height:44px;pointer-events:none;z-index:102;opacity:0.95;
+    }
+    .gate-corner-flourish.tl { top:11px;left:11px; }
+    .gate-corner-flourish.tr { top:11px;right:11px;transform:scaleX(-1); }
+    .gate-corner-flourish.bl { bottom:11px;left:11px;transform:scaleY(-1); }
+    .gate-corner-flourish.br { bottom:11px;right:11px;transform:scale(-1); }
+
+    /* Twinkling Shimmer Stars */
+    .shimmer-star {
+      position:absolute;color:var(--gold-light);font-size:14px;opacity:0;
+      pointer-events:none;z-index:103;animation:starTwinkle 3.2s infinite ease-in-out;
+      text-shadow:0 0 6px rgba(255,255,255,0.9);
+    }
+    @keyframes starTwinkle {
+      0%, 100% { opacity:0; transform:scale(0.3) rotate(0deg); }
+      50% { opacity:0.85; transform:scale(1.15) rotate(180deg); }
+    }
+
+    /* Elegant Gold Foil sweeps overlay reflection */
+    .gate-shine {
+      position:absolute;inset:0;
+      background:linear-gradient(to right, transparent 35%, rgba(255,255,255,0.3) 50%, transparent 65%);
+      transform:translateX(-100%) rotate(30deg);
+      animation:shineSweep 6s infinite ease-in-out;
+      pointer-events:none;z-index:102;
+    }
+    @keyframes shineSweep {
+      0% { transform:translateX(-100%) rotate(30deg); }
+      12%, 100% { transform:translateX(100%) rotate(30deg); }
+    }
+
+    /* Classical Olive Wreath with Monogram */
+    .gate-wreath-container {
+      width:110px;height:110px;margin-bottom:26px;z-index:102;position:relative;
+    }
+    .gate-wreath {
+      width:100%;height:100%;display:block;
+    }
+
+    /* Western European Invitation text layout */
+    .gate-title-wrap {
+      text-align:center;margin-bottom:28px;z-index:102;
+    }
+    .gate-we-title {
+      font-family:var(--f-script);font-size:42px;color:var(--gold-dark);line-height:1;margin-bottom:6px;
+    }
+    .gate-main-title {
+      font-family:var(--f-label);font-size:24px;font-weight:600;color:var(--charcoal);
+      letter-spacing:8px;line-height:1.2;
+      border-top:1px solid rgba(212,175,55,0.25);
+      border-bottom:1px solid rgba(212,175,55,0.25);
+      padding:8px 0;margin:0 12px;
+    }
+
+    .gate-couple{font-family:var(--f-title);font-size:clamp(26px, 8vw, 34px);font-weight:600;color:var(--charcoal);text-align:center;margin-bottom:10px;z-index:102;}
+    .gate-date-sub{font-family:var(--f-body);font-size:11px;letter-spacing:2px;color:var(--charcoal-2);text-align:center;margin-bottom:44px;z-index:102;}
+
+    /* Gate Button */
+    .gate-btn{
+      position:relative;overflow:hidden;padding:14px 44px;border-radius:50px;
+      border:none;background:var(--gold);color:#FFFFFF;
+      font-family:var(--f-label);font-size:13px;font-weight:700;letter-spacing:3px;cursor:pointer;
+      box-shadow:0 4px 15px rgba(212, 175, 55, 0.3);transition:transform 0.2s, box-shadow 0.2s;
+      z-index:103;
+    }
+    .gate-btn:active{transform:scale(0.97);}
+
+    /* ═══════════════════════════════════════════
+       HERO STORY
+    ═══════════════════════════════════════════ */
+    .hero-story{position:relative;width:100%;height:100vh;overflow:hidden;flex-shrink:0;}
+    #heroBg{position:absolute;inset:0;background:url('./anh14.webp') center top/cover no-repeat;opacity:0;transform:translateX(-35px);}
+    #heroBg.animate-bg{animation:bgSlideIn 1.5s ease-out forwards;}
+    @keyframes bgSlideIn{from{transform:translateX(-35px);opacity:0}to{transform:translateX(0);opacity:1}}
+    
+    .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 52%,rgba(0,0,0,.45) 80%,rgba(0,0,0,.7) 100%),linear-gradient(to right,rgba(0,0,0,.15) 0%,transparent 45%);}
+    .ho{position:absolute;z-index:3;opacity:0;transform:translateX(40px);}
+    .ho.animate-overlay{animation:overlayIn 1.5s ease-out 0.3s forwards;}
+    @keyframes overlayIn{from{transform:translateX(40px);opacity:0}to{transform:translateX(0);opacity:1}}
+    
+    .hero-topbar{top:48px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 16px;}
+    .hero-date-pill{background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border:1px solid rgba(212, 175, 55, 0.25);border-radius:20px;padding:6px 14px;font-family:var(--f-body);font-size:9.5px;font-weight:600;letter-spacing:2px;color:var(--charcoal);}
+    
+    .music-disc-btn{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.78);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px);}
+    .music-disc-btn svg{width:20px;height:20px;fill:none;stroke:var(--charcoal);stroke-width:1.8;flex-shrink:0;}
+    .music-disc-btn.spinning{animation:discSpin 3s linear infinite;}
+    @keyframes discSpin{to{transform:rotate(360deg)}}
+    
+    .hero-names-block{top:106px;left:0;right:0;text-align:center;padding:0 20px;}
+    .hero-eyebrow{font-family:var(--f-label);font-size:8px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:7px;}
+    .hero-names-text{font-family:var(--f-script);font-size:clamp(46px,13vw,62px);color:#fff;line-height:1.1;text-shadow:0 3px 20px rgba(0,0,0,0.5);}
+    .hero-names-and{display:block;font-size:0.5em;font-family:var(--f-title);font-style:italic;color:var(--gold-light);margin:3px 0;}
+
+    /* ═══════════════════════════════════════════
+       HERO CARD
+    ═══════════════════════════════════════════ */
+    .glass-invite-card{
+      bottom:110px;right:14px;width:190px;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 249, 246, 0.85) 100%);
+      backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);
+      border:1px solid rgba(212, 175, 55, 0.5);
+      border-radius:0; /* NO BO GOC */
+      padding:20px 16px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.7);
+      text-align:center;
+    }
+    .gc-eyebrow{font-family:var(--f-label);font-size:8.5px;letter-spacing:2.5px;color:var(--gold-dark);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+    .gc-date{font-family:var(--f-title);font-size:28px;font-weight:500;color:var(--charcoal);letter-spacing:1px;line-height:1;margin-bottom:6px;}
+    .gc-day{font-size:10px;color:var(--charcoal-2);margin-bottom:12px;font-family:var(--f-body);font-weight:500;letter-spacing:0.5px;}
+    .gc-sep{height:1px;background:linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);margin:12px 0;}
+    
+    .gc-countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px;}
+    .gc-cd-item{text-align:center;background:transparent;border:1px solid rgba(212, 175, 55, 0.3);padding:6px 2px;}
+    .gc-cd-num{font-family:var(--f-title);font-size:16px;font-weight:600;color:var(--gold-dark);line-height:1;}
+    .gc-cd-lbl{font-size:6px;color:var(--charcoal-2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+    
+    .gc-time-row{font-size:11.5px;color:var(--charcoal);font-weight:600;margin-bottom:6px;font-family:var(--f-body-alt);display:flex;align-items:center;justify-content:center;gap:6px;}
+    .gc-loc{font-size:10px;color:var(--charcoal-2);line-height:1.6;font-weight:400;}
+
+    /* ═══════════════════════════════════════════
+       FLOATING INTERACTION & COMMENTS (Scroll with user)
+    ═══════════════════════════════════════════ */
+    .comment-stream{
+      position:fixed;
+      bottom:90px;left:50%;
+      transform:translateX(-50%);
+      width:100%;max-width:var(--col);
+      padding:0 16px;
+      height:160px;
+      display:flex;flex-direction:column;
+      justify-content:flex-end;
+      align-items:flex-start; /* align comments to left */
+      gap:7px;overflow:hidden;pointer-events:none;
+      z-index:50;
+      mask-image:linear-gradient(to top, black 60%, transparent 100%);
+      -webkit-mask-image:linear-gradient(to top, black 60%, transparent 100%);
+      display:none; /* Shown after unlock */
+    }
+    .comment-badge{background:rgba(80,22,42,.75);border-left:2.5px solid rgba(230,100,130,.6);backdrop-filter:blur(6px);border-radius:3px 16px 16px 3px;padding:6px 12px;width:fit-content;max-width:90%;animation:badgeUp .42s cubic-bezier(.175,.885,.32,1.275) forwards;}
+    @keyframes badgeUp{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .badge-name{font-size:10px;font-weight:600;color:#FFB6C1;margin-bottom:2px;}
+    .badge-text{font-size:11px;color:#fff;line-height:1.45;}
+    
+    /* Floating Bottom Bar */
+    .hero-bottom-bar{
+      position:fixed;
+      bottom:0;left:50%;
+      transform:translateX(-50%);
+      width:100%;max-width:var(--col);
+      z-index:51;
+      padding:12px 12px 24px;
+      background:linear-gradient(to top, var(--cream) 70%, transparent 100%);
+      display:flex;gap:8px;align-items:center;
+      box-shadow:0 -10px 20px rgba(0,0,0,0.02);
+      display:none; /* Shown after unlock */
+    }
+    .wish-input{flex:1;background:rgba(255, 255, 255, 0.9);border:1px solid rgba(212,175,55,0.3);border-radius:24px;padding:10px 16px;font-size:13px;color:var(--charcoal);font-family:var(--f-body);outline:none;}
+    .wish-input::placeholder{color:var(--charcoal-2);opacity:0.6;}
+    .wish-send-btn{padding:10px 13px;border-radius:22px;border:1px solid rgba(212,175,55,.5);background:rgba(212,175,55,.15);color:var(--gold-dark);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--f-body);transition:background .2s;}
+    .wish-send-btn:active{background:rgba(212,175,55,.35);}
+    
+    .gift-trigger-btn {
+      padding:10px 14px;border-radius:22px;border:none;
+      background:var(--gold);color:#FFF;font-size:12px;font-weight:700;
+      cursor:pointer;white-space:nowrap;font-family:var(--f-body);
+      box-shadow:0 3px 8px rgba(212, 175, 55, 0.3);transition:transform 0.15s;
+    }
+    .gift-trigger-btn:active { transform:scale(0.92); }
+    
+    .heart-burst-btn{width:42px;height:42px;border-radius:50%;border:none;background:linear-gradient(135deg,#FF6B8A,#C8557A);display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;flex-shrink:0;box-shadow:0 4px 16px rgba(200,85,122,.48);transition:transform .15s;}
+    .heart-burst-btn:active{transform:scale(.87);}
+    
+    .hearts-zone{
+      position:fixed;
+      bottom:80px;left:50%;
+      transform:translateX(-50%);
+      width:100%;max-width:var(--col);
+      height:250px;z-index:50;pointer-events:none;
+    }
+    .fheart{position:absolute;bottom:0;right:16px;animation:fheartRise 2.8s ease-out forwards;user-select:none;}
+    @keyframes fheartRise{0%{transform:translateX(calc(var(--dx,0px))) translateY(0);opacity:.92}80%{opacity:.4}100%{transform:translateX(calc(var(--dx,0px))) translateY(-250px);opacity:0}}
+
+    /* ═══════════════════════════════════════════
+       GIFT POPUP MODAL (Triggered from floating bar)
+    ═══════════════════════════════════════════ */
+    .modal-overlay {
+      display:none;position:fixed;inset:0;z-index:550;
+      background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);
+      align-items:center;justify-content:center;padding:20px;
+    }
+    .modal-overlay.show { display:flex; }
+    .modal-content {
+      background:var(--cream-card);width:100%;max-width:340px;
+      border-radius:16px;border:1.5px solid rgba(212,175,55,0.35);
+      padding:24px 20px 20px;position:relative;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);text-align:center;
+      animation:modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes modalPop { from{transform:scale(0.9);opacity:0} to{transform:scale(1);opacity:1} }
+    .modal-close {
+      position:absolute;top:12px;right:14px;font-size:24px;
+      color:var(--charcoal-2);cursor:pointer;font-weight:bold;line-height:1;
+    }
+    .modal-close:hover { color:var(--charcoal); }
+
+    /* ═══════════════════════════════════════════
+       CREAM SECTION STYLING (Universal background)
+    ═══════════════════════════════════════════ */
+    .sec{padding:70px 22px;background:var(--cream);color:var(--charcoal);}
+    .sec-alt{background:var(--cream-alt);}
+    
+    .sec-eyebrow{font-family:var(--f-label);font-size:9.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-dark);text-align:center;margin-bottom:10px;}
+    .sec-title{font-family:var(--f-title);font-size:30px;font-weight:600;text-align:center;color:var(--charcoal);margin-bottom:10px;line-height:1.25;}
+    .sec-title em{font-style:italic;color:var(--gold-dark);}
+    
+    .gold-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 36px;}
+    .gold-divider .gbar{width:44px;height:1px;background:var(--gold);opacity:.45;}
+    .gold-divider .gdot{width:5px;height:5px;background:var(--gold);opacity:.75;transform:rotate(45deg);}
+
+    /* ═══════════════════════════════════════════
+       INVITE DETAILS
+    ═══════════════════════════════════════════ */
+    .invite-formal-card{
+      background:var(--cream-card);
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:12px;overflow:hidden;
+      box-shadow:0 4px 24px rgba(0,0,0,.02);
+    }
+    .ifc-top-band{height:5px;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light),var(--gold-dark));}
+    .ifc-body{padding:26px 22px;}
+    .ifc-heading{font-family:var(--f-script);font-size:36px;color:var(--gold-dark);text-align:center;margin-bottom:4px;}
+    .ifc-subhead{font-family:var(--f-label);font-size:9px;letter-spacing:3px;color:var(--charcoal-2);text-align:center;margin-bottom:20px;}
+    .ifc-divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+    .ifc-divider .dl{flex:1;height:1px;background:rgba(212,175,55,.25);}
+    .ifc-divider .dd{font-size:16px;color:rgba(212,175,55,.6);font-family:serif;}
+    .ifc-salute{font-family:var(--f-title);font-size:17px;font-style:italic;color:var(--charcoal);text-align:center;margin-bottom:14px;line-height:1.5;}
+    .ifc-recipient{font-size:14px;color:var(--charcoal-2);text-align:center;line-height:1.85;margin-bottom:18px;}
+    .ifc-recipient strong{color:var(--charcoal);font-weight:600;}
+    
+    .ifc-event{
+      background:rgba(212,175,55,.05);
+      border:1.5px solid rgba(212,175,55,.25);
+      border-radius:10px;padding:18px;margin-bottom:18px;text-align:center;
+    }
+    .ifc-event-time{font-family:var(--f-title);font-size:42px;font-weight:600;color:var(--gold-dark);line-height:1;}
+    .ifc-event-label{font-family:var(--f-label);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--charcoal-2);margin:6px 0 12px;}
+    .ifc-event-date{font-family:var(--f-title);font-size:16px;font-weight:600;color:var(--charcoal);margin-bottom:4px;}
+    .ifc-event-lunar{font-size:12px;color:var(--charcoal-2);margin-bottom:12px;}
+    .ifc-event-loc-label{font-family:var(--f-label);font-size:8px;letter-spacing:2px;color:var(--gold-dark);margin-bottom:4px;}
+    
+    /* Removed Huyện Tam Đường info */
+    .ifc-event-loc{font-size:13px;color:var(--charcoal);line-height:1.6;font-weight:500;}
+    
+    .ifc-closing{font-size:13px;color:var(--charcoal-2);line-height:1.9;text-align:center;}
+    .ifc-closing strong{color:var(--charcoal);}
+    .ifc-bot-band{height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
+
+    /* ═══════════════════════════════════════════
+       PHOTO FRAMES (Baroque gold corner ornaments like image 4)
+    ═══════════════════════════════════════════ */
+    .frames-sec{background:var(--cream);padding:70px 0;color:var(--charcoal);}
+    .frames-sec .sec-eyebrow{color:var(--gold-dark);padding:0 22px;}
+    .frames-sec .sec-title{color:var(--charcoal);padding:0 22px;}
+    .frames-sec .gold-divider{padding:0 22px;}
+    
+    .pf{
+      overflow:hidden;
+      border:3px solid #FFFFFF;
+      border-radius:0; /* sharp corners */
+      box-shadow:0 6px 18px rgba(0,0,0,0.06), 0 0 0 1px rgba(212,175,55,0.18);
+      cursor:pointer;position:relative;flex-shrink:0;
+    }
+    .pf img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .45s ease;}
+    .pf:hover img{transform:scale(1.07);}
+    .pf::after{content:'';position:absolute;inset:0;opacity:0;background:rgba(212,175,55,.05);transition:opacity .3s;}
+    .pf:hover::after{opacity:1;}
+
+    /* Baroque Gold corner SVGs (highlights the photo like reference image 4) */
+    .pf-orn {
+      position:absolute;width:40px;height:40px;pointer-events:none;z-index:3;opacity:0.9;
+    }
+    .pf-orn.tl { top:6px;left:6px; }
+    .pf-orn.tr { top:6px;right:6px;transform:scaleX(-1); }
+    .pf-orn.bl { bottom:6px;left:6px;transform:scaleY(-1); }
+    .pf-orn.br { bottom:6px;right:6px;transform:scale(-1); }
+    
+    /* Top/Bottom edge centers */
+    .pf-edge-orn {
+      position:absolute;left:50%;transform:translateX(-50%);width:70px;height:14px;pointer-events:none;z-index:3;opacity:0.95;
+    }
+    .pf-edge-orn.top { top:6px; }
+    .pf-edge-orn.bot { bottom:6px;transform:translateX(-50%) scaleY(-1); }
+
+    .pf-row1{display:flex;gap:10px;padding:0 20px 10px;}
+    .pf-r1-big{width:58%;aspect-ratio:3/4;}
+    .pf-r1-sm{width:40%;display:flex;flex-direction:column;gap:10px;}
+    .pf-r1-sm .pf{flex:1;width:100%;}
+
+    .frames-quote{text-align:center;padding:18px 28px;font-family:var(--f-title);font-size:16px;font-style:italic;color:var(--charcoal-2);line-height:1.7;}
+    .frames-quote .fq-open{font-size:30px;color:var(--gold);opacity:.6;line-height:.6;display:block;margin-bottom:6px;}
+
+    .pf-row2{display:flex;gap:10px;padding:0 20px 10px;align-items:flex-start;}
+    .pf-r2-sm{width:38%;aspect-ratio:3/4;margin-top:24px;}
+    .pf-r2-big{width:60%;aspect-ratio:3/4;}
+    .pf-wide{margin:10px 20px 0;aspect-ratio:16/10;}
+    .pf-wide img{object-position:center 35%;}
+
+    /* ═══════════════════════════════════════════
+       FAMILY SECTION
+    ═══════════════════════════════════════════ */
+    .fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .fam-card{background:var(--cream-card);border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:22px 14px;text-align:center;box-shadow:0 3px 15px rgba(0,0,0,.02);}
+    .fam-badge{font-family:var(--f-label);font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px;}
+    .fam-name{font-family:var(--f-script);font-size:28px;color:var(--charcoal);margin-bottom:12px;}
+    .fam-parents{font-size:12px;color:var(--charcoal-2);line-height:2.1;}
+    .fam-parents b{color:var(--charcoal);font-weight:600;}
+
+    /* ═══════════════════════════════════════════
+       CALENDAR (Clean light background with soft photo)
+    ═══════════════════════════════════════════ */
+    .cal-photo-sec{position:relative;overflow:hidden;padding:70px 22px;background:var(--cream);}
+    .cal-photo-bg{
+      position:absolute;inset:0;
+      background:linear-gradient(rgba(250, 249, 246, 0.9), rgba(250, 249, 246, 0.9)), url('./anh3.webp') center/cover no-repeat;
+    }
+    .cal-photo-sec .sec-eyebrow, .cal-photo-sec .sec-title, .cal-photo-sec .gold-divider, .cal-photo-sec .cal-note{position:relative;z-index:2;}
+    
+    .cal-card-glass{
+      position:relative;z-index:2;
+      background:var(--cream-card);
+      border:1.5px solid rgba(212,175,55,.25);
+      border-radius:16px;padding:22px 14px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.03);
+    }
+    .cal-month-hd{font-family:var(--f-title);font-size:20px;font-weight:600;color:var(--charcoal);text-align:center;margin-bottom:18px;letter-spacing:1px;}
+    .cal-dow-row{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px;}
+    .cal-dow{text-align:center;font-size:9.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:var(--charcoal-2);padding:3px 0;}
+    .cal-dow.wknd{color:var(--gold-dark);}
+    .cal-grid-c{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;}
+    .cal-c{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--charcoal-2);border-radius:50%;position:relative;font-weight:400;font-family:var(--f-body);}
+    .cal-c.wknd{color:var(--gold-dark);font-weight:500;}
+    .cal-c.wday{font-weight:800;}
+    .wday-fp-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+    .fp-heart-svg{width:40px;height:40px;animation:fpBeat 2s ease-in-out infinite;}
+    @keyframes fpBeat{0%,100%{transform:scale(1);filter:drop-shadow(0 0 3px rgba(220,60,100,.4))}50%{transform:scale(1.15);filter:drop-shadow(0 0 10px rgba(220,60,100,.75))}}
+    .wday-num{position:relative;z-index:2;font-weight:800;color:#fff;font-size:13px;}
+    .cal-note{text-align:center;margin-top:14px;font-size:12.5px;color:var(--charcoal-2);font-weight:500;}
+    .cal-note .hl{color:#DC3060;font-size:15px;}
+
+    /* ═══════════════════════════════════════════
+       FILMSTRIP GALLERY (Polaroid-style on cream bg)
+    ═══════════════════════════════════════════ */
+    .sec-dark{background:var(--cream-alt);color:var(--charcoal);padding:70px 0;}
+    .sec-dark .sec-eyebrow{color:var(--gold-dark);padding:0 22px;}
+    .sec-dark .sec-title{color:var(--charcoal);padding:0 22px;}
+    .sec-dark .gold-divider{padding:0 22px;}
+    .sec-dark .gold-divider .gbar{background:var(--gold);opacity:.45;}
+    
+    .filmstrip-wrap{margin-top:24px;overflow:hidden;width:100%;}
+    .filmstrip-wrap:hover .film-track{animation-play-state:paused;}
+    
+    .film-perfs{background:#FFFFFF;height:22px;display:flex;align-items:center;padding:0 4px;border-top:1px solid rgba(212,175,55,0.15);border-bottom:1px solid rgba(212,175,55,0.15);}
+    .film-perf-row{display:flex;gap:9px;overflow:hidden;width:100%;padding:0 3px;}
+    .film-perf{flex-shrink:0;width:12px;height:9px;background:var(--cream-alt);border-radius:1px;border:1px solid rgba(212,175,55,0.25);}
+    .film-strip{background:var(--cream);overflow:hidden;}
+    .film-track{display:flex;gap:5px;padding:6px;width:max-content;animation:filmRoll 32s linear infinite;}
+    @keyframes filmRoll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    
+    .film-frame{
+      flex-shrink:0;width:172px;height:230px;border-radius:0;overflow:hidden;cursor:pointer;
+      border:3px solid #FFFFFF;box-shadow:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(212,175,55,0.15);
+      position:relative;transition:border-color .25s,transform .25s;
+    }
+    .film-frame::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.15) 100%);}
+    .film-frame img{width:100%;height:100%;object-fit:cover;transition:transform .3s;display:block;}
+    .film-frame:hover{border-color:var(--gold);transform:scale(1.03);}
+    .film-frame:hover img{transform:scale(1.06);}
+    .film-num{position:absolute;bottom:6px;right:8px;z-index:3;font-size:9.5px;font-family:monospace;color:var(--gold-dark);font-weight:bold;letter-spacing:1px;}
+    
+    .film-hint{text-align:center;font-size:11.5px;margin-top:14px;color:var(--charcoal-2);padding:0 22px;}
+    .film-hint em{color:var(--gold-dark);font-style:normal;font-weight:600;}
+
+    /* ═══════════════════════════════════════════
+       LOCATION
+    ═══════════════════════════════════════════ */
+    .loc-card{background:var(--cream-card);border:1px solid rgba(212,175,55,.2);border-radius:12px;overflow:hidden;box-shadow:0 4px 22px rgba(0,0,0,.02);}
+    .loc-info{padding:20px 20px 14px;text-align:center;}
+    .loc-name{font-family:var(--f-title);font-size:19px;font-weight:600;color:var(--charcoal);margin-bottom:6px;}
+    
+    /* Removed Huyện Tam Đường info */
+    .loc-addr{font-size:13.5px;color:var(--charcoal-2);line-height:1.75;}
+    
+    .loc-dir-btn{display:flex;align-items:center;justify-content:center;gap:7px;margin:14px 20px 20px;padding:12px 24px;border-radius:50px;border:1.5px solid var(--gold);background:transparent;color:var(--gold-dark);font-family:var(--f-label);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;text-decoration:none;cursor:pointer;transition:all .22s;}
+    .loc-dir-btn:hover,.loc-dir-btn:active{background:var(--gold);color:#fff;}
+
+    /* ═══════════════════════════════════════════
+       GIFT (Groom Only)
+    ═══════════════════════════════════════════ */
+    .gift-intro{font-family:var(--f-title);font-size:17px;font-style:italic;color:var(--charcoal-2);text-align:center;margin-bottom:24px;line-height:1.7;}
+    .gift-card-main{background:var(--cream-card);border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:28px 20px;box-shadow:0 4px 24px rgba(0,0,0,.02);text-align:center;}
+    .gift-top-band{height:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light),var(--gold-dark));border-radius:12px 12px 0 0;margin:-28px -20px 20px;}
+    .gift-sl{font-family:var(--f-label);font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+    .gift-pn{font-family:var(--f-script);font-size:34px;color:var(--charcoal);margin-bottom:18px;}
+    
+    .qr-box{width:175px;height:175px;margin:0 auto 18px;background:#fff;border-radius:10px;padding:9px;border:1px solid rgba(212,175,55,.2);box-shadow:0 4px 16px rgba(0,0,0,.05);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .qr-box img{width:100%;height:100%;object-fit:contain;display:block;}
+    
+    .bank-info-rows{display:flex;flex-direction:column;gap:9px;margin-bottom:16px;}
+    .bank-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--cream);border-radius:8px;}
+    .bank-lbl{font-size:11px;color:var(--charcoal-2);text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+    .bank-val{font-size:13.5px;color:var(--charcoal);font-weight:600;text-align:right;}
+    .bank-val-sm{font-size:11.5px;}
+    
+    .bank-row-stk{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--cream);border-radius:8px;}
+    .stk-group{display:flex;align-items:center;gap:8px;}
+    .stk-num{font-size:14.5px;color:var(--charcoal);font-weight:700;font-family:monospace;letter-spacing:1px;}
+    
+    .copy-stk-btn{font-size:10px;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;border:1px solid var(--gold);background:transparent;border-radius:12px;padding:4px 10px;cursor:pointer;transition:all .2s;}
+    .copy-stk-btn:active{background:var(--gold);color:#fff;}
+    
+    .gift-note{font-size:12px;color:var(--charcoal-2);text-align:center;margin-top:4px;line-height:1.75;}
+
+    /* ═══════════════════════════════════════════
+       RSVP (Champagne Gold Accents)
+    ═══════════════════════════════════════════ */
+    .rsvp-card{background:var(--cream-card);border:1px solid rgba(212,175,55,.25);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.02);}
+    .rsvp-top-band{height:5px;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light),var(--gold-dark));}
+    .rsvp-body{padding:26px 20px;}
+    .rsvp-intro{font-family:var(--f-title);font-size:15px;font-style:italic;color:var(--charcoal-2);text-align:center;margin-bottom:22px;line-height:1.65;}
+    
+    .rsvp-field{margin-bottom:18px;}
+    .rsvp-label{font-family:var(--f-label);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;display:block;}
+    .rsvp-input{width:100%;padding:12px 16px;border:1.5px solid rgba(212,175,55,.25);border-radius:8px;background:var(--cream);font-family:var(--f-body);font-size:14px;color:var(--charcoal);outline:none;transition:border-color .2s;}
+    .rsvp-input:focus{border-color:var(--gold);}
+    textarea.rsvp-input{resize:none;height:80px;line-height:1.6;}
+    
+    .rsvp-options{display:flex;flex-direction:column;gap:10px;}
+    .rsvp-opt{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid rgba(212,175,55,.2);border-radius:10px;cursor:pointer;transition:all .22s;position:relative;}
+    .rsvp-opt input[type="radio"]{position:absolute;opacity:0;pointer-events:none;}
+    .rsvp-opt-dot{width:19px;height:19px;border:2px solid rgba(212,175,55,.45);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    
+    .rsvp-opt.selected{border-color:var(--gold);background:rgba(212,175,55,.05);}
+    .rsvp-opt.selected .rsvp-opt-dot{background:var(--gold);border-color:var(--gold);}
+    .rsvp-opt.selected .rsvp-opt-dot::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff;display:block;}
+    .rsvp-opt-icon{font-size:20px;}
+    .rsvp-opt-text{font-size:14px;color:var(--charcoal);font-weight:600;}
+    .rsvp-opt-sub{font-size:11.5px;color:var(--charcoal-2);margin-top:1px;}
+    
+    .rsvp-count-row{display:flex;align-items:center;gap:12px;background:var(--cream);border-radius:8px;padding:10px 16px;}
+    .rsvp-count-lbl{flex:1;font-size:13.5px;color:var(--charcoal);font-weight:500;}
+    .rsvp-count-ctrl{display:flex;align-items:center;gap:10px;}
+    .rsvp-cnt-btn{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(212,175,55,.4);background:transparent;color:var(--gold-dark);font-size:18px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;}
+    .rsvp-cnt-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+    .rsvp-cnt-num{font-family:var(--f-title);font-size:22px;font-weight:600;color:var(--charcoal);min-width:26px;text-align:center;}
+    
+    .rsvp-submit{
+      width:100%;padding:15px 24px;margin-top:22px;border-radius:50px;border:none;
+      background:var(--gold);color:#FFFFFF;font-family:var(--f-label);font-size:13px;letter-spacing:2.5px;font-weight:700;
+      cursor:pointer;transition:all .22s;box-shadow:0 4px 18px rgba(212,175,55,.25);
+    }
+    .rsvp-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,.4);}
+    
+    .rsvp-form-wrap,.rsvp-success{transition:opacity .4s;}
+    .rsvp-success{display:none;text-align:center;padding:10px 0;}
+    .rsvp-success.show{display:block;}
+    .rsvp-success-icon{font-size:56px;margin-bottom:16px;display:block;}
+    .rsvp-success-title{font-family:var(--f-script);font-size:34px;color:var(--gold-dark);margin-bottom:10px;}
+    .rsvp-success-msg{font-family:var(--f-title);font-size:16px;font-style:italic;color:var(--charcoal-2);line-height:1.75;}
+    .rsvp-success-name{font-family:var(--f-title);font-size:18px;font-weight:600;color:var(--charcoal);margin:10px 0 4px;}
+
+    /* ═══════════════════════════════════════════
+       FOOTER (Cream & Charcoal)
+    ═══════════════════════════════════════════ */
+    footer{background:var(--cream-alt);padding:60px 22px 105px;text-align:center;color:var(--charcoal);border-top:1.5px solid rgba(212,175,55,.2);}
+    .footer-xi{font-size:28px;color:var(--gold);margin-bottom:12px;font-family:serif;}
+    .footer-names{font-family:var(--f-script);font-size:44px;margin-bottom:12px;color:var(--charcoal);}
+    .footer-verse{font-family:var(--f-title);font-size:17px;font-style:italic;color:var(--charcoal-2);margin-bottom:16px;line-height:1.7;}
+    .footer-info{font-size:12.5px;color:var(--charcoal-2);line-height:1.85;}
+    .footer-date{font-family:var(--f-label);font-size:13px;color:var(--gold-dark);margin-top:16px;letter-spacing:3px;font-weight:600;}
+
+    /* ═══════════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════════ */
+    #lightbox{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.97);backdrop-filter:blur(14px);flex-direction:column;align-items:center;justify-content:center;}
+    #lightbox.show{display:flex;}
+    .lb-close{position:absolute;top:16px;right:18px;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:34px;color:rgba(255,255,255,.65);cursor:pointer;transition:background .2s;}
+    .lb-close:hover{background:rgba(255,255,255,.16);color:#fff;}
+    .lb-img-w{padding:0 54px;max-height:80vh;display:flex;align-items:center;}
+    #lb-img{max-width:100%;max-height:78vh;object-fit:contain;border:3px solid rgba(255,255,255,.15);border-radius:0;box-shadow:0 12px 50px rgba(0,0,0,.75);opacity:0;transform:scale(.94);transition:opacity .3s,transform .3s;}
+    #lightbox.show #lb-img{opacity:1;transform:scale(1);}
+    .lb-cap{text-align:center;color:rgba(255,255,255,.5);padding:12px 20px;font-size:12px;letter-spacing:1px;}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.65);font-size:24px;cursor:pointer;transition:background .2s;z-index:2;}
+    .lb-nav:hover{background:var(--gold);color:#000;}
+    #lbPrev{left:10px;}
+    #lbNext{right:10px;}
+    .lb-ctr{position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.35);letter-spacing:2px;}
+
+    @media(max-width:440px){
+      .gate-we-title{font-size:36px;}
+      .gate-main-title{font-size:20px;letter-spacing:5px;}
+      .hero-names-text{font-size:44px;}
+      .glass-invite-card{width:162px;}
+      .comment-stream{width:174px;}
+      .pf-row1,.pf-row2{padding:0 14px 10px;}
+      .pf-wide{margin:10px 14px 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-bg"></div>
+  <div class="main-viewport" id="mainViewport">
+
+    <!-- ══════════════════════════════════════════
+         GATE (Western European classical luxury cover card)
+    ══════════════════════════════════════════ -->
+    <div id="gate">
+      <!-- Gold sweeps overlay reflection -->
+      <div class="gate-shine"></div>
+
+      <!-- Borders & Corner Flourishes -->
+      <div class="gate-card-border"></div>
+      <div class="gate-card-border-inner"></div>
+      
+      <!-- Baroque scroll corner decorations -->
+      <svg class="gate-corner-flourish tl" viewBox="0 0 60 60"><path d="M6,50 C6,20 20,6 50,6 M6,6 L22,6 M6,6 L6,22 M16,16 C16,30 30,16 16,16 M26,6 Q18,12 12,18" stroke="var(--gold)" stroke-width="1.8" fill="none"/><circle cx="16" cy="16" r="2.5" fill="var(--gold)"/><circle cx="6" cy="6" r="3" fill="var(--gold)"/></svg>
+      <svg class="gate-corner-flourish tr" viewBox="0 0 60 60"><path d="M6,50 C6,20 20,6 50,6 M6,6 L22,6 M6,6 L6,22 M16,16 C16,30 30,16 16,16 M26,6 Q18,12 12,18" stroke="var(--gold)" stroke-width="1.8" fill="none"/><circle cx="16" cy="16" r="2.5" fill="var(--gold)"/><circle cx="6" cy="6" r="3" fill="var(--gold)"/></svg>
+      <svg class="gate-corner-flourish bl" viewBox="0 0 60 60"><path d="M6,50 C6,20 20,6 50,6 M6,6 L22,6 M6,6 L6,22 M16,16 C16,30 30,16 16,16 M26,6 Q18,12 12,18" stroke="var(--gold)" stroke-width="1.8" fill="none"/><circle cx="16" cy="16" r="2.5" fill="var(--gold)"/><circle cx="6" cy="6" r="3" fill="var(--gold)"/></svg>
+      <svg class="gate-corner-flourish br" viewBox="0 0 60 60"><path d="M6,50 C6,20 20,6 50,6 M6,6 L22,6 M6,6 L6,22 M16,16 C16,30 30,16 16,16 M26,6 Q18,12 12,18" stroke="var(--gold)" stroke-width="1.8" fill="none"/><circle cx="16" cy="16" r="2.5" fill="var(--gold)"/><circle cx="6" cy="6" r="3" fill="var(--gold)"/></svg>
+
+      <!-- Twinkling stars -->
+      <div class="shimmer-star" style="top:15%; left:20%; animation-delay: 0s;">✦</div>
+      <div class="shimmer-star" style="top:25%; right:22%; animation-delay: 1.5s;">✦</div>
+      <div class="shimmer-star" style="top:60%; left:18%; animation-delay: 0.8s;">✦</div>
+      <div class="shimmer-star" style="top:75%; right:20%; animation-delay: 2.2s;">✦</div>
+
+      <!-- Monogram inside Wreath -->
+      <div class="gate-wreath-container">
+        <svg class="gate-wreath" viewBox="0 0 100 100">
+          <path d="M50,85 C30,85 15,70 15,48 C15,26 30,12 50,12 C70,12 85,26 85,48 C85,70 70,85 50,85 Z" fill="none" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <path d="M22,30 Q14,26 18,20 Q24,24 22,30 Z" fill="var(--gold)"/>
+          <path d="M16,45 Q8,42 12,35 Q18,38 16,45 Z" fill="var(--gold)"/>
+          <path d="M17,60 Q10,62 12,54 Q19,52 17,60 Z" fill="var(--gold)"/>
+          <path d="M26,73 Q20,78 20,70 Q26,65 26,73 Z" fill="var(--gold)"/>
+          <path d="M78,30 Q86,26 82,20 Q76,24 78,30 Z" fill="var(--gold)"/>
+          <path d="M84,45 Q92,42 88,35 Q82,38 84,45 Z" fill="var(--gold)"/>
+          <path d="M83,60 Q90,62 88,54 Q81,52 83,60 Z" fill="var(--gold)"/>
+          <path d="M74,73 Q80,78 80,70 Q74,65 74,73 Z" fill="var(--gold)"/>
+          <text x="50" y="54" font-family="var(--f-title)" font-size="15" font-weight="700" fill="var(--gold-dark)" text-anchor="middle">A &amp; M</text>
+        </svg>
+      </div>
+
+      <!-- Invitation titles -->
+      <div class="gate-title-wrap">
+        <div class="gate-we-title">Wedding Invitation</div>
+        <div class="gate-main-title">THIỆP MỜI CƯỚI</div>
+      </div>
+
+      <div class="gate-couple">A Chu &amp; Thị Minh</div>
+      <div class="gate-date-sub">19 · 08 · 2026 · THỨ TƯ</div>
+
+      <button class="gate-btn" id="gateBtn"><span>MỞ THIỆP</span></button>
+    </div>
+
+    <!-- Falling sparkling particles canvas (floats everywhere) -->
+    <canvas id="sparkleCanvas"></canvas>
+
+    <!-- ZingMP3 background music player (hidden completely) -->
+    <iframe 
+        id="zingMusic" 
+        scrolling="no" 
+        width="0" 
+        height="0" 
+        src="https://zingmp3.vn/embed/album/SC88D7DD?start=false" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay"
+        style="display: none; visibility: hidden; position: absolute; width: 0; height: 0;">
+    </iframe>
+
+    <!-- ══════════════════════════════════════════  HERO  ══════════════════════════════════════════ -->
+    <section class="hero-story" id="heroSection">
+      <div id="heroBg"></div>
+      <div class="hero-scrim"></div>
+      <div class="ho hero-topbar" id="hoTopbar">
+        <div class="hero-date-pill">19 · 08 · 2026</div>
+        <div class="music-disc-btn" id="musicDisc">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 9V5M12 5l2.5 2M12 5L9.5 7"/></svg>
+        </div>
+      </div>
+      <div class="ho hero-names-block" id="hoNames">
+        <div class="hero-eyebrow">💗 HAPPY WEDDING 💗</div>
+        <div class="hero-names-text">A Chu<span class="hero-names-and">&amp; Thị Minh</span></div>
+      </div>
+      
+      <!-- Light cream glassmorphism card (NO BO GOC) -->
+      <div class="ho glass-invite-card" id="hoGlassCard">
+        <div class="gc-eyebrow">THƯ MỜI TIỆC CƯỚI</div>
+        <div class="gc-date">19.08.2026</div>
+        <div class="gc-day">Thứ Tư · 11:00 sáng</div>
+        <div class="gc-sep"></div>
+        <div class="gc-countdown">
+          <div class="gc-cd-item"><div class="gc-cd-num" id="cdDays">00</div><div class="gc-cd-lbl">Ngày</div></div>
+          <div class="gc-cd-item"><div class="gc-cd-num" id="cdHours">00</div><div class="gc-cd-lbl">Giờ</div></div>
+          <div class="gc-cd-item"><div class="gc-cd-num" id="cdMins">00</div><div class="gc-cd-lbl">Phút</div></div>
+          <div class="gc-cd-item"><div class="gc-cd-num" id="cdSecs">00</div><div class="gc-cd-lbl">Giây</div></div>
+        </div>
+        <div class="gc-sep"></div>
+        <div class="gc-time-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Gia đình nhà trai
+        </div>
+        <div class="gc-loc">Bản Giang Ma<br>Xã Tả Lèng, Lai Châu</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  FLOATING STREAM & BOTTOM BAR  ══════════════════════════════════════════ -->
+    <div class="comment-stream" id="commentStream"></div>
+    
+    <div class="hero-bottom-bar" id="floatingBottomBar">
+      <input type="text" class="wish-input" id="wishInput" placeholder="Gửi lời chúc...">
+      <button class="wish-send-btn" id="sendWishBtn">Gửi ✉</button>
+      <button class="gift-trigger-btn" id="giftTriggerBtn" onclick="openGiftModal()">Quà 🎁</button>
+      <button class="heart-burst-btn" id="heartBurstBtn">💕</button>
+    </div>
+    
+    <div class="hearts-zone" id="heartsZone"></div>
+
+    <!-- ══════════════════════════════════════════  INVITE  ══════════════════════════════════════════ -->
+    <section class="sec" id="inviteSection">
+      <div class="sec-eyebrow">Lời Mời Trân Trọng</div>
+      <h2 class="sec-title">Thư <em>Mời Cưới</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+
+      <div class="invite-formal-card">
+        <div class="ifc-top-band"></div>
+        <div class="ifc-body">
+          <div class="ifc-heading">Wedding Invitation</div>
+          <div class="ifc-subhead">— THIỆP MỜI CƯỚI —</div>
+          <div class="ifc-divider"><div class="dl"></div><div class="dd">💍</div><div class="dl"></div></div>
+          <!-- Dynamic Salute name from URL parameter -->
+          <div class="ifc-salute">Trân trọng kính mời <span id="guestNameSalute">Quý vị</span></div>
+          <p class="ifc-recipient" id="ifcRecipientText">
+            <strong>Cô, Dì, Chú, Bác, Anh, Chị, Em, Bạn Bè</strong><br>
+            gần xa tới dự tiệc cưới của vợ chồng chúng em:
+          </p>
+          <div class="ifc-event">
+            <div class="ifc-event-time">11:00</div>
+            <div class="ifc-event-label">Bữa Cơm Thân Mật · Sáng</div>
+            <div class="ifc-event-date">Thứ Tư, ngày 19 tháng 08 năm 2026</div>
+            <div class="ifc-event-lunar">(Tức ngày 07/07 năm Bính Ngọ)</div>
+            <div class="ifc-event-loc-label">📍 Địa điểm</div>
+            <!-- Removed Huyện Tam Đường info -->
+            <div class="ifc-event-loc">Gia đình nhà trai<br>Bản Giang Ma, Xã Tả Lèng<br>Tỉnh Lai Châu</div>
+          </div>
+          <p class="ifc-closing">
+            🥰 Vì không thể đưa thiệp đến tận tay, mong mọi người thông cảm bỏ qua nếu có thiếu sót ạ.<br><br>
+            ❤️ <em>Sự hiện diện của quý vị là niềm hạnh phúc lớn nhất của gia đình chúng em.</em>
+          </p>
+        </div>
+        <div class="ifc-bot-band"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  PHOTO FRAMES (Baroque Gold corner ornaments)  ══════════════════════════════════════════ -->
+    <section class="frames-sec" id="framesSection">
+      <div class="sec-eyebrow">Kỷ Niệm Đẹp</div>
+      <h2 class="sec-title">Khoảnh Khắc <em>Đặc Biệt</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+
+      <!-- Row 1: Asymmetric layout -->
+      <div class="pf-row1">
+        <div class="pf pf-r1-big" onclick="openLbDirect('./anh17.webp','A Chu & Thị Minh')">
+          <img src="./anh17.webp" alt="A Chu & Thị Minh 2" loading="lazy">
+          
+          <!-- Baroque Gold SVG flourishes (Corner / Edge decoration) -->
+          <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12 M20,4 C14,8 10,14 4,20" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/><path d="M4,4 L8,8" stroke="#D4AF37" stroke-width="1.5"/></svg>
+          <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12 M20,4 C14,8 10,14 4,20" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/><path d="M4,4 L8,8" stroke="#D4AF37" stroke-width="1.5"/></svg>
+          <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12 M20,4 C14,8 10,14 4,20" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/><path d="M4,4 L8,8" stroke="#D4AF37" stroke-width="1.5"/></svg>
+          <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12 M20,4 C14,8 10,14 4,20" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/><path d="M4,4 L8,8" stroke="#D4AF37" stroke-width="1.5"/></svg>
+          <svg class="pf-edge-orn top" viewBox="0 0 100 20"><path d="M10,10 C35,10 40,2 50,15 C60,2 65,10 90,10" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="50" cy="15" r="2.5" fill="#D4AF37"/></svg>
+          <svg class="pf-edge-orn bot" viewBox="0 0 100 20"><path d="M10,10 C35,10 40,2 50,15 C60,2 65,10 90,10" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="50" cy="15" r="2.5" fill="#D4AF37"/></svg>
+        </div>
+        <div class="pf-r1-sm">
+          <div class="pf" onclick="openLbDirect('./anh4.webp','A Chu & Thị Minh')">
+            <img src="./anh4.webp" alt="A Chu & Thị Minh 1" loading="lazy">
+            <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+          </div>
+          <div class="pf" onclick="openLbDirect('./anh5.webp','A Chu & Thị Minh')">
+            <img src="./anh5.webp" alt="A Chu & Thị Minh 4" loading="lazy">
+            <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+            <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Love quote -->
+      <div class="frames-quote">
+        <span class="fq-open">"</span>
+        Mỗi khoảnh khắc bên nhau là một trang ký ức đẹp mà chúng em sẽ gìn giữ mãi mãi...
+      </div>
+
+      <!-- Row 2: Staggered columns -->
+      <div class="pf-row2">
+        <div class="pf pf-r2-sm" onclick="openLbDirect('./anh18.webp','A Chu & Thị Minh')">
+          <img src="./anh18.webp" alt="A Chu & Thị Minh 3" loading="lazy">
+          <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+          <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+          <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+          <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+        </div>
+        <div class="pf pf-r2-big" onclick="openLbDirect('./anh19.webp','A Chu & Thị Minh')">
+          <img src="./anh19.webp" alt="A Chu & Thị Minh 5" loading="lazy">
+          <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/></svg>
+          <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/></svg>
+          <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/></svg>
+          <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12 M12,12 C12,25 25,12 12,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.5" fill="#D4AF37"/></svg>
+        </div>
+      </div>
+
+      <!-- Landscape landscape polaroid -->
+      <div class="pf pf-wide" onclick="openLbDirect('./anh14.webp','A Chu & Thị Minh')">
+        <img src="./anh14.webp" alt="A Chu & Thị Minh - Cùng nhau" loading="lazy" style="object-position:center 25%;">
+        <svg class="pf-orn tl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+        <svg class="pf-orn tr" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+        <svg class="pf-orn bl" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+        <svg class="pf-orn br" viewBox="0 0 50 50"><path d="M4,40 C4,15 15,4 40,4 M4,4 L12,4 M4,4 L4,12" stroke="#D4AF37" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/></svg>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  FAMILY  ══════════════════════════════════════════ -->
+    <section class="sec sec-alt" id="familySection">
+      <div class="sec-eyebrow">Hai Gia Đình</div>
+      <h2 class="sec-title">Thông Tin <em>Gia Đình</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+      <div class="fam-grid">
+        <div class="fam-card">
+          <div class="fam-badge">🏠 Nhà Trai</div>
+          <div class="fam-name">A Chu</div>
+          <div class="fam-parents"><b>Bố:</b> Giang A Say<br><b>Mẹ:</b> Sùng Thị Dua</div>
+        </div>
+        <div class="fam-card">
+          <div class="fam-badge">🏠 Nhà Gái</div>
+          <div class="fam-name">Thị Minh</div>
+          <div class="fam-parents"><b>Bố:</b> Thào A Lơ<br><b>Mẹ:</b> Sùng Thị Chờ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  CALENDAR (Light faded photo background)  ══════════════════════════════════════════ -->
+    <section class="cal-photo-sec" id="calendarSection">
+      <div class="cal-photo-bg"></div>
+      <div class="sec-eyebrow">Lưu Ngày Trọng Đại</div>
+      <h2 class="sec-title">Lịch <em>Tháng 8</em> · 2026</h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+      
+      <div class="cal-card-glass">
+        <div class="cal-month-hd">Tháng 8 · 2026</div>
+        <div class="cal-dow-row">
+          <div class="cal-dow wknd">CN</div><div class="cal-dow">T2</div><div class="cal-dow">T3</div>
+          <div class="cal-dow">T4</div><div class="cal-dow">T5</div><div class="cal-dow">T6</div>
+          <div class="cal-dow wknd">T7</div>
+        </div>
+        <div class="cal-grid-c" id="calGrid"></div>
+      </div>
+      <p class="cal-note"><span class="hl">❤</span> Ngày 19/08/2026 — Ngày cưới hạnh phúc của chúng em</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════  GALLERY (Polaroid strip style)  ══════════════════════════════════════════ -->
+    <section class="sec-dark" id="gallerySection">
+      <div class="sec-eyebrow">Kỷ Niệm Lưu Giữ</div>
+      <h2 class="sec-title">Album Ảnh Cưới</h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+      <div class="filmstrip-wrap" id="filmstripWrap">
+        <div class="film-perfs"><div class="film-perf-row" id="topPerfs"></div></div>
+        <div class="film-strip"><div class="film-track" id="filmTrack"></div></div>
+        <div class="film-perfs"><div class="film-perf-row" id="botPerfs"></div></div>
+      </div>
+      <p class="film-hint">👆 Nhấn vào ảnh để xem <em>toàn màn hình</em> · Hover để dừng</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════  LOCATION  ══════════════════════════════════════════ -->
+    <section class="sec sec-alt" id="locationSection">
+      <div class="sec-eyebrow">Địa Điểm Tổ Chức</div>
+      <h2 class="sec-title">Hướng Dẫn <em>Đến Dự</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+      <div class="loc-card">
+        <div class="loc-info">
+          <div class="loc-name">📍 Gia Đình Nhà Trai</div>
+          <!-- Removed Huyện Tam Đường info -->
+          <div class="loc-addr">Bản Giang Ma, Xã Tả Lèng<br>Tỉnh Lai Châu</div>
+        </div>
+        <iframe src="https://maps.google.com/maps?q=Xã+Tả+Lèng,+Huyện+Tam+Đường,+Tỉnh+Lai+Châu,+Việt+Nam&output=embed&hl=vi&z=13"
+          width="100%" height="250"
+          style="border:0;display:block;filter:grayscale(30%) sepia(20%) brightness(0.95);"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a class="loc-dir-btn" href="https://maps.app.goo.gl/PWL96cSfKxG49qUr8" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mở Google Maps
+        </a>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  GIFT  ══════════════════════════════════════════ -->
+    <section class="sec" id="giftSection">
+      <div class="sec-eyebrow">Mừng Cưới</div>
+      <h2 class="sec-title">Hộp Quà <em>Chúc Phúc</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+      <p class="gift-intro">💌 Mọi yêu thương phương xa em xin nhận tại:</p>
+      <div class="gift-card-main">
+        <div class="gift-top-band"></div>
+        <div class="gift-sl">💑 Nhà Trai · Chú Rể</div>
+        <div class="gift-pn">A Chu</div>
+        <div class="qr-box">
+          <img src="https://img.vietqr.io/image/ICB-107884007757-compact2.png?accountName=GIANG%20A%20CHU&addInfo=Mung%20cuoi%20A%20Chu%20va%20Thi%20Minh"
+            alt="QR VietinBank - GIANG A CHU" loading="lazy"
+            onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=155x155&data=VietinBank+107884007757+GIANG+A+CHU';this.onerror=null;">
+        </div>
+        <div class="bank-info-rows">
+          <div class="bank-row"><span class="bank-lbl">Tên TK</span><span class="bank-val">GIANG A CHU</span></div>
+          <div class="bank-row-stk">
+            <span class="bank-lbl">Số TK</span>
+            <div class="stk-group">
+              <span class="stk-num" id="stkNum">107884007757</span>
+              <button class="copy-stk-btn" onclick="copySTK()">Copy</button>
+            </div>
+          </div>
+          <div class="bank-row"><span class="bank-lbl">Ngân hàng</span><span class="bank-val">VietinBank</span></div>
+          <div class="bank-row"><span class="bank-lbl">Chi nhánh</span><span class="bank-val bank-val-sm">CN Lai Châu · PGD Đồng Phong</span></div>
+        </div>
+      </div>
+      <p class="gift-note" style="margin-top:16px;">💐 Rất hân hạnh được đón tiếp quý vị · Xin chân thành cảm ơn 💐</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════  RSVP  ══════════════════════════════════════════ -->
+    <section class="sec sec-alt" id="rsvpSection">
+      <div class="sec-eyebrow">Xác Nhận Tham Dự</div>
+      <h2 class="sec-title">Gửi Lời <em>Xác Nhận</em></h2>
+      <div class="gold-divider"><div class="gbar"></div><div class="gdot"></div><div class="gbar"></div></div>
+
+      <div class="rsvp-card">
+        <div class="rsvp-top-band"></div>
+        <div class="rsvp-body">
+          <p class="rsvp-intro">Gia đình rất vui khi biết bạn sẽ tham dự ngày vui của chúng tôi.<br>Xin vui lòng xác nhận để chúng tôi được chuẩn bị đón tiếp chu đáo hơn.</p>
+
+          <!-- Success state -->
+          <div class="rsvp-success" id="rsvpSuccess">
+            <span class="rsvp-success-icon">💌</span>
+            <div class="rsvp-success-title">Cảm ơn bạn!</div>
+            <div class="rsvp-success-name" id="rsvpSuccessName"></div>
+            <div class="rsvp-success-msg" id="rsvpSuccessMsg"></div>
+          </div>
+
+          <!-- Form Wrap -->
+          <div id="rsvpFormWrap">
+            <div class="rsvp-field">
+              <label class="rsvp-label" for="rsvpName">Tên quý khách</label>
+              <input type="text" id="rsvpName" class="rsvp-input" placeholder="Nhập tên của bạn...">
+            </div>
+
+            <div class="rsvp-field">
+              <label class="rsvp-label">Quý khách có tham dự không?</label>
+              <div class="rsvp-options">
+                <label class="rsvp-opt" id="rsvpOpt1" onclick="selectRsvp(1)">
+                  <input type="radio" name="attendance" value="yes">
+                  <div class="rsvp-opt-dot"></div>
+                  <div class="rsvp-opt-icon">🥳</div>
+                  <div>
+                    <div class="rsvp-opt-text">Rất vui được tham dự!</div>
+                    <div class="rsvp-opt-sub">Tôi sẽ có mặt vào ngày 19/08/2026</div>
+                  </div>
+                </label>
+                <label class="rsvp-opt" id="rsvpOpt2" onclick="selectRsvp(2)">
+                  <input type="radio" name="attendance" value="no">
+                  <div class="rsvp-opt-dot"></div>
+                  <div class="rsvp-opt-icon">😢</div>
+                  <div>
+                    <div class="rsvp-opt-text">Rất tiếc, tôi không thể đến</div>
+                    <div class="rsvp-opt-sub">Chúc mừng cô dâu chú rể từ xa</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Guest count -->
+            <div class="rsvp-field" id="rsvpCountField" style="display:none;">
+              <label class="rsvp-label">Số người tham dự</label>
+              <div class="rsvp-count-row">
+                <span class="rsvp-count-lbl">Tổng số người (bao gồm bạn)</span>
+                <div class="rsvp-count-ctrl">
+                  <button class="rsvp-cnt-btn" onclick="changeCount(-1)">−</button>
+                  <span class="rsvp-cnt-num" id="rsvpCntNum">1</span>
+                  <button class="rsvp-cnt-btn" onclick="changeCount(1)">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="rsvp-field">
+              <label class="rsvp-label" for="rsvpMsg">Lời chúc (tùy chọn)</label>
+              <textarea id="rsvpMsg" class="rsvp-input" placeholder="Gửi lời chúc tốt đẹp đến cô dâu chú rể..."></textarea>
+            </div>
+
+            <button class="rsvp-submit" onclick="submitRsvp()">💌 Gửi Xác Nhận</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════  FOOTER  ══════════════════════════════════════════ -->
+    <footer>
+      <div class="footer-xi">囍</div>
+      <div class="footer-names">A Chu &amp; Thị Minh</div>
+      <p class="footer-verse">"Hai trái tim, một mái nhà, trọn đời bên nhau"</p>
+      <p class="footer-info">Trân trọng kính mời quý vị đến dự ngày vui đại hỷ của chúng em.<br>Bản Giang Ma, Xã Tả Lèng, Tỉnh Lai Châu</p>
+      <div class="footer-date">19 · 08 · 2026 · THỨ TƯ</div>
+    </footer>
+  </div>
+
+  <!-- GIFT MODAL -->
+  <div id="giftModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeGiftModal()">&times;</span>
+      <div class="gift-top-band"></div>
+      <div class="gift-sl">💑 Mừng Cưới Chú Rể</div>
+      <div class="gift-pn">A Chu</div>
+      <div class="qr-box">
+        <img src="https://img.vietqr.io/image/ICB-107884007757-compact2.png?accountName=GIANG%20A%20CHU&addInfo=Mung%20cuoi%20A%20Chu%20va%20Thi%20Minh" alt="QR VietinBank - GIANG A CHU">
+      </div>
+      <div class="bank-info-rows">
+        <div class="bank-row"><span class="bank-lbl">Tên TK</span><span class="bank-val">GIANG A CHU</span></div>
+        <div class="bank-row-stk">
+          <span class="bank-lbl">Số TK</span>
+          <div class="stk-group">
+            <span class="stk-num" id="modalStkNum">107884007757</span>
+            <button class="copy-stk-btn" onclick="copyModalSTK()">Copy</button>
+          </div>
+        </div>
+        <div class="bank-row"><span class="bank-lbl">Ngân hàng</span><span class="bank-val">VietinBank</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span class="lb-close" id="lbClose">&times;</span>
+    <div class="lb-ctr" id="lbCtr"></div>
+    <div class="lb-img-w"><img id="lb-img" src="" alt="Ảnh cưới"></div>
+    <div class="lb-cap" id="lbCap"></div>
+    <span class="lb-nav" id="lbPrev">&#10094;</span>
+    <span class="lb-nav" id="lbNext">&#10095;</span>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  
+  <script>
+    /* ═══════════════  FIREBASE INIT  ═══════════════ */
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjp0mmz8fLerZbeCWAfgLgUbrlXNRYCdo",
+      authDomain: "wedding-achu.firebaseapp.com",
+      databaseURL: "https://wedding-achu-default-rtdb.asia-southeast1.firebasedatabase.app", 
+      projectId: "wedding-achu",
+      storageBucket: "wedding-achu.firebasestorage.app",
+      messagingSenderId: "549143303603",
+      appId: "1:549143303603:web:86f779924990c855a4a7c6",
+      measurementId: "G-737N6C9PXD"
+    };
+    try {
+      firebase.initializeApp(firebaseConfig);
+    } catch(e) {
+      // In case the DB URL is wrong for some reason, fallback to default US Central
+      firebaseConfig.databaseURL = "https://wedding-achu-default-rtdb.firebaseio.com";
+      firebase.app().delete().then(() => firebase.initializeApp(firebaseConfig)).catch(()=>{});
+    }
+    const database = firebase.database();
+
+    /* ═══════════════  CONFIG  ═══════════════ */
+    var WEDDING_TS = new Date('2026-08-19T11:00:00+07:00').getTime();
+    var gate      = document.getElementById('gate');
+    var viewport  = document.getElementById('mainViewport');
+    var heroBg    = document.getElementById('heroBg');
+    var musicDisc = document.getElementById('musicDisc');
+    var commentEl = document.getElementById('commentStream');
+    var heartsZone= document.getElementById('heartsZone');
+    var lightbox  = document.getElementById('lightbox');
+    var lbImg     = document.getElementById('lb-img');
+    var bottomBar = document.getElementById('floatingBottomBar');
+
+    var photos = [
+      {src:'./anh6.webp',alt:'A Chu & Thị Minh · Ảnh 1'},
+      {src:'./anh7.webp',alt:'A Chu & Thị Minh · Ảnh 2'},
+      {src:'./anh8.webp',alt:'A Chu & Thị Minh · Ảnh 3'},
+      {src:'./anh9.webp',alt:'A Chu & Thị Minh · Ảnh 4'},
+      {src:'./anh10.webp',alt:'A Chu & Thị Minh · Ảnh 5'},
+      {src:'./anh11.webp',alt:'A Chu & Thị Minh · Ảnh 6'},
+      {src:'./anh12.webp',alt:'A Chu & Thị Minh · Ảnh 7'},
+      {src:'./anh13.webp',alt:'A Chu & Thị Minh · Ảnh 8'},
+      {src:'./anh2.webp',alt:'A Chu & Thị Minh · Ảnh 9'},
+      {src:'./anh15.webp',alt:'A Chu & Thị Minh · Ảnh 10'},
+      {src:'./anh1.webp',alt:'A Chu & Thị Minh · Ảnh 11'},
+      {src:'./anh14.webp',alt:'A Chu & Thị Minh · Ảnh 12'},
+      {src:'./anh3.webp',alt:'A Chu & Thị Minh · Ảnh 13'},
+      {src:'./anh4.webp',alt:'A Chu & Thị Minh · Ảnh 14'},
+      {src:'./anh5.webp',alt:'A Chu & Thị Minh · Ảnh 15'},
+      {src:'./anh17.webp',alt:'A Chu & Thị Minh · Ảnh 16'},
+      {src:'./anh18.webp',alt:'A Chu & Thị Minh · Ảnh 17'},
+      {src:'./anh19.webp',alt:'A Chu & Thị Minh · Ảnh 18'}
+    ];
+    var loadedPhotos = [], currentLbIdx = 0;
+    var lbDirect = false, lbDirectSrc = '', lbDirectAlt = '';
+
+    // Initialize sparkles immediately on load so they appear on the cover page too
+    window.addEventListener('DOMContentLoaded', function() {
+      startSparkles();
+      parseGuestName();
+    });
+
+    /* ═══════════════  GATE  ═══════════════ */
+    document.getElementById('gateBtn').addEventListener('click', openGate);
+    
+    // Autoplay works on user click (MỞ THIỆP) by dynamically creating and appending the iframe
+    function openGate(){
+      startMusic(); 
+      gate.classList.add('hide');
+      setTimeout(function(){
+        viewport.classList.add('unlocked');
+        heroBg.classList.add('animate-bg');
+        document.querySelectorAll('.ho').forEach(function(el){
+          el.classList.add('animate-overlay'); el.style.pointerEvents='auto';
+        });
+        
+        // Show floating bottom bar and comments
+        bottomBar.style.display = 'flex';
+        commentEl.style.display = 'flex';
+
+        startComments();
+        setInterval(tickCountdown, 1000); tickCountdown();
+        buildCalendar(); buildFilmstrip();
+        checkRsvpState();
+      }, 650);
+    }
+
+    /* ═══════════════  GUEST NAME (URL Parameter)  ═══════════════ */
+    window.currentGuestName = 'Khách mời';
+    function parseGuestName() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var guest = urlParams.get('to') || urlParams.get('name') || urlParams.get('g');
+      if(guest) {
+        guest = decodeURIComponent(guest);
+        window.currentGuestName = guest;
+        document.getElementById('guestNameSalute').textContent = guest;
+        var genericRecipient = document.getElementById('ifcRecipientText');
+        if(genericRecipient) {
+          genericRecipient.style.display = 'none';
+        }
+      }
+    }
+
+    /* ═══════════════  SPARKLING DUST CANVAS  ═══════════════ */
+    function startSparkles() {
+      var canvas = document.getElementById('sparkleCanvas');
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      
+      function resizeCanvas() {
+        canvas.width = viewport.clientWidth;
+        canvas.height = viewport.clientHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: -10,
+          size: Math.random() * 2.8 + 1,
+          speedY: Math.random() * 0.9 + 0.4,
+          speedX: Math.sin(Math.random() * 2 * Math.PI) * 0.2,
+          opacity: Math.random() * 0.6 + 0.4,
+          sparklePhase: Math.random() * Math.PI,
+          sparkleSpeed: Math.random() * 0.08 + 0.04
+        };
+      }
+      
+      function update() {
+        if (particles.length < 35 && Math.random() < 0.12) {
+          particles.push(createParticle());
+        }
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.sparklePhase += p.sparkleSpeed;
+          
+          var curOpacity = p.opacity * (0.6 + 0.4 * Math.sin(p.sparklePhase));
+          var r = p.size * (0.8 + 0.2 * Math.sin(p.sparklePhase));
+          
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(212, 175, 55, ' + curOpacity + ')';
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+          ctx.fill();
+          
+          if (p.size > 2.2) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + (curOpacity * 0.6) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x - r * 1.8, p.y);
+            ctx.lineTo(p.x + r * 1.8, p.y);
+            ctx.moveTo(p.x, p.y - r * 1.8);
+            ctx.lineTo(p.x, p.y + r * 1.8);
+            ctx.stroke();
+          }
+          
+          if (p.y > canvas.height) {
+            particles.splice(i, 1);
+            i--;
+          }
+        }
+        requestAnimationFrame(update);
+      }
+      update();
+    }
+
+    /* ═══════════════  ZINGMP3 MUSIC (Autoplay optimized)  ═══════════════ */
+    var isPlaying = false;
+    function startMusic() {
+      var iframe = document.getElementById("zingMusic");
+      if(iframe) {
+        // Set the src with start=true inside click handler to bypass browser restrictions
+        iframe.src = "https://zingmp3.vn/embed/album/SC88D7DD?start=true";
+        isPlaying = true;
+        musicDisc.classList.add('spinning');
+      }
+    }
+    
+    musicDisc.addEventListener('click', function() {
+      var iframe = document.getElementById("zingMusic");
+      if (!iframe) return;
+      if (isPlaying) {
+        iframe.src = "https://zingmp3.vn/embed/album/SC88D7DD?start=false";
+        isPlaying = false;
+        musicDisc.classList.remove('spinning');
+      } else {
+        iframe.src = "https://zingmp3.vn/embed/album/SC88D7DD?start=true";
+        isPlaying = true;
+        musicDisc.classList.add('spinning');
+      }
+    });
+
+    /* ═══════════════  COUNTDOWN  ═══════════════ */
+    function tickCountdown(){
+      var diff=Math.max(0,WEDDING_TS-Date.now());
+      document.getElementById('cdDays').textContent =String(Math.floor(diff/86400000)).padStart(2,'0');
+      document.getElementById('cdHours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+      document.getElementById('cdMins').textContent =String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+      document.getElementById('cdSecs').textContent =String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    tickCountdown();
+
+    /* ═══════════════  COMMENTS  ═══════════════ */
+    var wishes=[
+      {name:'Hoa Mai',    text:'Chúc mừng hạnh phúc A Chu & Thị Minh! 💕'},
+      {name:'Văn Hùng',   text:'Đẹp đôi quá! Chúc hai bạn mãi yêu nhau!'},
+      {name:'Thu Lan',    text:'Chúc mừng tân lang tân nương! Đầu bạc răng long 💍'},
+      {name:'Minh Toàn',  text:'Chúc hai vợ chồng hạnh phúc mãi mãi! ❤️'},
+      {name:'Thanh Thảo', text:'Chúc nắm tay nhau đi trọn cuộc đời 🌸'},
+      {name:'Quang Anh',  text:'Vui vẻ hạnh phúc bên nhau mãi mãi nhé! 🎊'},
+      {name:'Diệu Linh',  text:'Tuyệt vời! Chúc mừng đám cưới! ✨'},
+    ];
+    var cIdx=0;
+    function startComments(){addComment(wishes[0].name,wishes[0].text);cIdx=1;setInterval(function(){addComment(wishes[cIdx%wishes.length].name,wishes[cIdx%wishes.length].text);cIdx++;},4200);}
+    function addComment(n,t){var b=document.createElement('div');b.className='comment-badge';b.innerHTML='<div class="badge-name">'+esc(n)+'</div><div class="badge-text">'+esc(t)+'</div>';commentEl.appendChild(b);if(commentEl.children.length>4)commentEl.removeChild(commentEl.children[0]);}
+    document.getElementById('sendWishBtn').addEventListener('click',sendWish);
+    document.getElementById('wishInput').addEventListener('keydown',function(e){if(e.key==='Enter')sendWish();});
+    
+    function sendWish(){
+      var v=document.getElementById('wishInput').value.trim();
+      if(!v)return;
+      document.getElementById('wishInput').value='';
+      burstHearts(3);
+      
+      // Push to Firebase Realtime Database
+      try {
+        database.ref('wishes').push({
+          name: window.currentGuestName || 'Khách mời',
+          text: v,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        });
+      } catch(e) {
+        // Fallback local if firebase fails
+        addComment(window.currentGuestName || 'Khách mời', v);
+      }
+    }
+
+    // Listen for real-time wishes from Firebase
+    let isInitialLoad = true;
+    try {
+      database.ref('wishes').limitToLast(8).on('child_added', function(snapshot) {
+        var data = snapshot.val();
+        if(data && data.name && data.text) {
+          // Delay rendering slightly if many load at once initially
+          if (isInitialLoad) {
+            setTimeout(() => addComment(data.name, data.text), Math.random() * 2000);
+          } else {
+            addComment(data.name, data.text);
+            burstHearts(1); // Small heart burst on receive
+          }
+        }
+      });
+      setTimeout(() => { isInitialLoad = false; }, 2500);
+    } catch(e) {}
+    function esc(s){return s.replace(/[&<>'"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]||c;});}
+
+    /* ═══════════════  HEARTS  ═══════════════ */
+    document.getElementById('heartBurstBtn').addEventListener('click',function(){burstHearts(6);});
+    var hEmojis=['💕','❤️','🌸','💖','💗','✨','💝'];
+    function burstHearts(n){for(var i=0;i<n;i++){(function(d){setTimeout(function(){var el=document.createElement('div');el.className='fheart';el.textContent=hEmojis[Math.floor(Math.random()*hEmojis.length)];el.style.setProperty('--dx',(Math.random()*44-22)+'px');el.style.fontSize=(13+Math.floor(Math.random()*12))+'px';heartsZone.appendChild(el);setTimeout(function(){el.remove();},2900);},d);})(i*95);}}
+
+    /* ═══════════════  CALENDAR  ═══════════════ */
+    function buildCalendar(){
+      var grid=document.getElementById('calGrid');
+      if(grid.children.length)return;
+      var startDOW=6,totalDays=31,weddingDay=19;
+      for(var e=0;e<startDOW;e++){var em=document.createElement('div');em.className='cal-c';grid.appendChild(em);}
+      for(var d=1;d<=totalDays;d++){
+        var dow=(startDOW+d-1)%7;
+        var cell=document.createElement('div');
+        if(d===weddingDay){
+          cell.className='cal-c wday';
+          cell.innerHTML='<div class="wday-fp-wrap"><svg class="fp-heart-svg" viewBox="0 0 60 60" fill="none"><path d="M30 53C18 44 5 36 5 23 5 13 13 6 21 8c3 .6 6 2.5 9 5 3-2.5 6-4.4 9-5C47 6 55 13 55 23c0 13-13 21-25 30z" stroke="#FF90B0" stroke-width="1.1" opacity=".4"/><path d="M30 47C20 39 9 32 9 23 9 15 16 9 23 11c2.5.5 5 2 7 4.5 2-2.5 4.5-4 7-4.5C44 9 51 15 51 23c0 9-11 16-21 24z" stroke="#EE5585" stroke-width="1.3" opacity=".55"/><path d="M30 41C22 34 14 28 14 23c0-6 6-11 11-9 2 .4 4 1.8 5 3.5 1-1.7 3-3.1 5-3.5 5-2 11 3 11 9 0 5-8 11-16 18z" stroke="#DC2060" stroke-width="1.5" opacity=".72"/><path d="M30 35C24 30 18 26 18 23c0-4 4-8 8-6 1.5.3 3 1.5 4 2.8 1-1.3 2.5-2.5 4-2.8 4-2 8 2 8 6 0 3-6 7-12 12z" stroke="#CC0848" stroke-width="1.7" opacity=".85"/><path d="M30 29C27 27 22 25 22 23c0-2 2-4.5 5-3.5 1.2.3 2 1.2 3 2 1-.8 1.8-1.7 3-2 3-1 5 1.5 5 3.5 0 2-5 4-8 6z" stroke="#DD1058" stroke-width="1.9" fill="rgba(220,50,100,.18)"/></svg></div><span class="wday-num">'+d+'</span>';
+        } else {
+          var cls='cal-c';if(dow===0||dow===6)cls+=' wknd';
+          cell.className=cls;cell.textContent=d;
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    /* ═══════════════  FILMSTRIP  ═══════════════ */
+    function buildFilmstrip(){
+      var track=document.getElementById('filmTrack');
+      if(track.children.length)return;
+      loadedPhotos=[];
+      var all=photos.concat(photos);
+      all.forEach(function(p,i){
+        var frame=document.createElement('div');
+        frame.className='film-frame';
+        frame.setAttribute('data-oidx',i%photos.length);
+        frame.style.display='none';
+        var img=document.createElement('img');
+        img.alt=p.alt; img.loading='lazy';
+        var num=document.createElement('div');
+        num.className='film-num';
+        num.textContent=String(i%photos.length+1).padStart(2,'0');
+        img.onload=(function(fr,origIdx,isFirst){
+          return function(){
+            fr.style.display='';
+            if(isFirst){loadedPhotos.push({src:photos[origIdx].src,alt:photos[origIdx].alt,origIdx:origIdx});}
+          };
+        })(frame,i%photos.length,i<photos.length);
+        img.onerror=function(){};
+        img.src=p.src;
+        frame.appendChild(img); frame.appendChild(num); track.appendChild(frame);
+        frame.addEventListener('click',function(){
+          var oi=parseInt(this.getAttribute('data-oidx'));
+          var lbIdx=0;
+          for(var k=0;k<loadedPhotos.length;k++){if(loadedPhotos[k].origIdx===oi){lbIdx=k;break;}}
+          openLightbox(lbIdx);
+        });
+      });
+      ['topPerfs','botPerfs'].forEach(function(id){
+        var row=document.getElementById(id);
+        for(var i=0;i<55;i++){var h=document.createElement('div');h.className='film-perf';row.appendChild(h);}
+      });
+    }
+    var fw=document.getElementById('filmstripWrap');
+    if(fw){
+      fw.addEventListener('touchstart',function(){var t=document.getElementById('filmTrack');if(t)t.style.animationPlayState='paused';},{passive:true});
+      fw.addEventListener('touchend',function(){setTimeout(function(){var t=document.getElementById('filmTrack');if(t)t.style.animationPlayState='running';},700);});
+    }
+
+    /* ═══════════════  LIGHTBOX  ═══════════════ */
+    function openLightbox(idx){
+      lbDirect=false; currentLbIdx=idx; updateLb();
+      lightbox.classList.add('show');
+      var t=document.getElementById('filmTrack');if(t)t.style.animationPlayState='paused';
+    }
+    window.openLbDirect=function(src,alt){
+      lbDirect=true;
+      lbImg.style.opacity='0'; lbImg.style.transform='scale(.94)';
+      setTimeout(function(){
+        lbImg.src=src; lbImg.alt=alt;
+        document.getElementById('lbCap').textContent=alt;
+        document.getElementById('lbCtr').textContent='';
+        lbImg.style.opacity='1'; lbImg.style.transform='scale(1)';
+      },140);
+      lightbox.classList.add('show');
+    };
+    function closeLb(){lightbox.classList.remove('show');var t=document.getElementById('filmTrack');if(t)t.style.animationPlayState='running';}
+    function updateLb(){
+      if(!loadedPhotos.length)return;
+      var p=loadedPhotos[currentLbIdx];
+      lbImg.style.opacity='0'; lbImg.style.transform='scale(.94)';
+      setTimeout(function(){
+        lbImg.src=p.src; lbImg.alt=p.alt;
+        document.getElementById('lbCap').textContent=p.alt;
+        document.getElementById('lbCtr').textContent=(currentLbIdx+1)+' / '+loadedPhotos.length;
+        lbImg.style.opacity='1'; lbImg.style.transform='scale(1)';
+      },140);
+    }
+    document.getElementById('lbClose').addEventListener('click',closeLb);
+    lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLb();});
+    document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();if(lbDirect)return;currentLbIdx=(currentLbIdx-1+loadedPhotos.length)%loadedPhotos.length;updateLb();});
+    document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();if(lbDirect)return;currentLbIdx=(currentLbIdx+1)%loadedPhotos.length;updateLb();});
+    var lbTx=0;
+    lightbox.addEventListener('touchstart',function(e){lbTx=e.changedTouches[0].clientX;},{passive:true});
+    lightbox.addEventListener('touchend',function(e){if(lbDirect)return;var dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>50){if(dx<0)document.getElementById('lbNext').click();else document.getElementById('lbPrev').click();}});
+    document.addEventListener('keydown',function(e){if(!lightbox.classList.contains('show'))return;if(e.key==='Escape')closeLb();else if(e.key==='ArrowLeft')document.getElementById('lbPrev').click();else if(e.key==='ArrowRight')document.getElementById('lbNext').click();});
+
+    /* ═══════════════  COPY STK  ═══════════════ */
+    function copySTK(){
+      var stk=document.getElementById('stkNum').textContent;
+      if(navigator.clipboard)navigator.clipboard.writeText(stk);
+      var btn=event.target,old=btn.textContent;
+      btn.textContent='✓ Đã sao chép';btn.style.background='var(--gold)';btn.style.color='#fff';
+      setTimeout(function(){btn.textContent=old;btn.style.background='';btn.style.color='';},1800);
+    }
+    function copyModalSTK(){
+      var stk=document.getElementById('modalStkNum').textContent;
+      if(navigator.clipboard)navigator.clipboard.writeText(stk);
+      var btn=event.target,old=btn.textContent;
+      btn.textContent='✓ Đã sao chép';btn.style.background='var(--gold)';btn.style.color='#fff';
+      setTimeout(function(){btn.textContent=old;btn.style.background='';btn.style.color='';},1800);
+    }
+
+    /* ═══════════════  GIFT POPUP MODAL  ═══════════════ */
+    window.openGiftModal = function() {
+      document.getElementById('giftModal').classList.add('show');
+    }
+    window.closeGiftModal = function() {
+      document.getElementById('giftModal').classList.remove('show');
+    }
+
+    /* ═══════════════  RSVP  ═══════════════ */
+    var rsvpSelected = 0; // 1=yes, 2=no
+    var guestCount   = 1;
+
+    function selectRsvp(opt){
+      rsvpSelected=opt;
+      document.getElementById('rsvpOpt1').classList.toggle('selected', opt===1);
+      document.getElementById('rsvpOpt2').classList.toggle('selected', opt===2);
+      document.getElementById('rsvpCountField').style.display = (opt===1) ? '' : 'none';
+    }
+
+    function changeCount(delta){
+      guestCount = Math.max(1, Math.min(20, guestCount + delta));
+      document.getElementById('rsvpCntNum').textContent = guestCount;
+    }
+
+    function submitRsvp(){
+      var name = document.getElementById('rsvpName').value.trim();
+      if(!name){ alert('Vui lòng nhập tên của bạn.'); return; }
+      if(!rsvpSelected){ alert('Vui lòng chọn câu trả lời tham dự.'); return; }
+      var msg = document.getElementById('rsvpMsg').value.trim();
+
+      var data = {
+        name: name,
+        attending: rsvpSelected===1,
+        guestCount: rsvpSelected===1 ? guestCount : 0,
+        message: msg,
+        time: new Date().toISOString()
+      };
+
+      try{ localStorage.setItem('rsvp_achu_thuminh', JSON.stringify(data)); }catch(e){}
+      showRsvpSuccess(data);
+    }
+
+    function showRsvpSuccess(data){
+      document.getElementById('rsvpFormWrap').style.display='none';
+      var s=document.getElementById('rsvpSuccess');
+      document.getElementById('rsvpSuccessName').textContent = data.name;
+      if(data.attending){
+        s.querySelector('.rsvp-success-icon').textContent='🥳';
+        document.getElementById('rsvpSuccessMsg').innerHTML =
+          'Tuyệt vời! Gia đình chúng em rất vui khi biết <strong>'+esc(data.name)+'</strong> sẽ tham dự.<br><br>' +
+          'Chúng em sẽ chuẩn bị đón tiếp ' + data.guestCount + ' người từ đoàn của bạn.<br><br>' +
+          'Hẹn gặp bạn vào sáng ngày <strong>19/08/2026</strong> tại Bản Giang Ma, Xã Tả Lèng, Lai Châu! 🎉';
+      } else {
+        s.querySelector('.rsvp-success-icon').textContent='💌';
+        document.getElementById('rsvpSuccessMsg').innerHTML =
+          'Cảm ơn <strong>'+esc(data.name)+'</strong> đã dành thời gian gửi lời xác nhận.<br><br>' +
+          'Rất tiếc khi không được gặp bạn, nhưng gia đình trân trọng tấm lòng của bạn. Mong được gặp bạn trong dịp khác! 💕';
+      }
+      s.classList.add('show');
+    }
+
+    function checkRsvpState(){
+      try{
+        var saved = localStorage.getItem('rsvp_achu_thuminh');
+        if(saved){ showRsvpSuccess(JSON.parse(saved)); }
+      }catch(e){}
+    }
+  </script>
+</body>
+</html>

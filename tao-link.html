@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tạo Link Thiệp Cưới | A Chu & Thị Minh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --bg-dark: #0f1411;
+      --bg-dark-alt: #19251E;
+      --gold-light: #EAD09D;
+      --gold-dark: #C5A870;
+      --text-main: #FAF9F6;
+      --text-muted: #A0B0A5;
+      --zalo-blue: #0068FF;
+      --zalo-blue-hover: #0056D6;
+      --f-title: 'Playfair Display', serif;
+      --f-body: 'Inter', sans-serif;
+      --glass-bg: rgba(25, 37, 30, 0.6);
+      --glass-border: rgba(197, 168, 112, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-alt) 100%);
+      color: var(--text-main);
+      font-family: var(--f-body);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Ambient background blobs for more luxury feel */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: var(--gold-dark);
+      filter: blur(150px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+    body::before { top: -100px; left: -100px; }
+    body::after { bottom: -100px; right: -100px; }
+
+    /* Main Container */
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .title {
+      font-family: var(--f-title);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(197, 168, 112, 0.2);
+      color: var(--text-main);
+      font-family: var(--f-body);
+      font-size: 15px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--gold-dark);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 0 3px rgba(197, 168, 112, 0.1);
+    }
+    .form-input::placeholder {
+      color: rgba(250, 249, 246, 0.3);
+    }
+
+    /* Action Button */
+    .btn-generate {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+      color: var(--bg-dark);
+      border: none;
+      padding: 16px;
+      font-family: var(--f-body);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+      box-shadow: 0 8px 20px rgba(197, 168, 112, 0.25);
+    }
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(197, 168, 112, 0.35);
+    }
+    .btn-generate:active {
+      transform: translateY(0);
+    }
+
+    /* Result Area */
+    .result-area {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px dashed rgba(197, 168, 112, 0.3);
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .result-area.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .result-title {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .link-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(197, 168, 112, 0.4);
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--gold-light);
+      word-break: break-all;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      user-select: all;
+    }
+
+    /* Action Buttons Row */
+    .action-row {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-action {
+      flex: 1;
+      padding: 14px 10px;
+      border-radius: 10px;
+      font-family: var(--f-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border: none;
+    }
+    
+    .btn-copy {
+      background: rgba(250, 249, 246, 0.1);
+      color: var(--text-main);
+      border: 1px solid rgba(250, 249, 246, 0.2);
+    }
+    .btn-copy:hover {
+      background: rgba(250, 249, 246, 0.2);
+    }
+
+    .btn-zalo {
+      background: var(--zalo-blue);
+      color: #FFF;
+      text-decoration: none;
+    }
+    .btn-zalo:hover {
+      background: var(--zalo-blue-hover);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--gold-light);
+      color: var(--bg-dark);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 1000;
+    }
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 400px) {
+      .action-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-icon">💌</div>
+      <h1 class="title">Tạo Link Gửi Khách</h1>
+      <p class="subtitle">Công cụ hỗ trợ cô dâu chú rể tạo đường link thiệp cưới hiển thị tên riêng của từng khách mời.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="baseUrl">Địa chỉ website đám cưới</label>
+      <input type="text" id="baseUrl" class="form-input" placeholder="https://domain.com/thiep-cuoi/">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="guestName">Tên khách mời (Bắt buộc)</label>
+      <input type="text" id="guestName" class="form-input" placeholder="VD: Anh Tuấn & Chị Thảo" autocomplete="off">
+    </div>
+
+    <button class="btn-generate" onclick="generateLink()">Tạo Link Gửi Khách ✨</button>
+
+    <div class="result-area" id="resultArea">
+      <div class="result-title">Đường link dành riêng cho khách:</div>
+      <div class="link-box" id="finalLink"></div>
+      
+      <div class="action-row">
+        <button class="btn-action btn-copy" onclick="copyLink()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Sao chép link
+        </button>
+        <a href="https://zalo.me" target="_blank" rel="noopener noreferrer" class="btn-action btn-zalo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.19 12.31c0-4.57-4.27-8.28-9.52-8.28s-9.52 3.71-9.52 8.28c0 4.14 3.48 7.62 8.24 8.2l2.67 2.6c.36.35.94.13.98-.37l.14-3.14c3.96-.8 6.99-4.04 6.99-7.29zM10.87 14.5h-2.1v-4.5h2.1v4.5zm4.84 0h-1.63l-1.92-2.5v2.5h-1.65v-4.5h1.72l1.83 2.38v-2.38h1.65v4.5z"/></svg>
+          Gửi qua Zalo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastMsg">Đã sao chép thành công! 🎉</div>
+
+  <script>
+    // Khi trang vừa load, tự động lấy URL hiện tại làm mặc định
+    document.addEventListener("DOMContentLoaded", () => {
+      const baseUrlInput = document.getElementById('baseUrl');
+      // Lấy URL hiện tại, bỏ phần query parameters (nếu có) và bỏ tên file (nếu là tao-link.html)
+      let currentUrl = window.location.href.split('?')[0];
+      if (currentUrl.endsWith('tao-link.html')) {
+        currentUrl = currentUrl.replace('tao-link.html', 'index.html'); // trỏ về file chính
+      } else if (!currentUrl.endsWith('/')) {
+        // Nếu URL không có dấu / ở cuối và không có file cụ thể, tự thêm /
+        // Nhưng nếu người dùng mở trực tiếp thư mục, nó sẽ là index.html
+        currentUrl += '/';
+      }
+      baseUrlInput.value = currentUrl;
+    });
+
+    // Hàm tạo link
+    function generateLink() {
+      const baseUrl = document.getElementById('baseUrl').value.trim();
+      const guestName = document.getElementById('guestName').value.trim();
+
+      if (!guestName) {
+        alert("Vui lòng nhập tên khách mời!");
+        document.getElementById('guestName').focus();
+        return;
+      }
+      if (!baseUrl) {
+        alert("Vui lòng kiểm tra lại địa chỉ website!");
+        document.getElementById('baseUrl').focus();
+        return;
+      }
+
+      // Format URL: Xử lý dấu ? hoặc & để nối thêm tham số
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      // Sử dụng tham số name= (theo chuẩn yêu cầu)
+      const finalUrl = `${baseUrl}${separator}name=${encodeURIComponent(guestName)}`;
+
+      // Hiển thị kết quả
+      document.getElementById('finalLink').textContent = finalUrl;
+      const resultArea = document.getElementById('resultArea');
+      
+      // Reset animation
+      resultArea.classList.remove('show');
+      void resultArea.offsetWidth; // trigger reflow
+      resultArea.classList.add('show');
+    }
+
+    // Hàm sao chép link
+    function copyLink() {
+      const linkText = document.getElementById('finalLink').textContent;
+      if (!linkText) return;
+
+      // Copy to clipboard
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(linkText).then(() => {
+          showToast();
+        }).catch(err => fallbackCopy(linkText));
+      } else {
+        fallbackCopy(linkText);
+      }
+    }
+    
+    function fallbackCopy(text) {
+        const tempInput = document.createElement("input");
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+            document.execCommand("copy");
+            showToast();
+        } catch (err) {
+            console.error('Lỗi khi sao chép', err);
+            alert('Sao chép thất bại, vui lòng bôi đen link và copy thủ công!');
+        }
+        document.body.removeChild(tempInput);
+    }
+
+    // Hàm hiển thị thông báo Toast
+    let toastTimeout;
+    function showToast() {
+      const toast = document.getElementById('toastMsg');
+      toast.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Bấm Enter ở ô nhập tên sẽ tự động tạo link
+    document.getElementById('guestName').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        generateLink();
+      }
+    });
+  </script>
+</body>
+</html>
