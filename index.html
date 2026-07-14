@@ -156,9 +156,9 @@
     .music-disc-btn.spinning{animation:discSpin 3s linear infinite;}
     @keyframes discSpin{to{transform:rotate(360deg)}}
     
-    .hero-names-block{top:50px;left:0;right:0;text-align:center;padding:0 20px;}
+    .hero-names-block{top:80px;left:0;right:0;text-align:center;padding:0 20px;}
     .hero-eyebrow{font-family:var(--f-label);font-size:8px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:7px;}
-    .hero-names-text{font-family:var(--f-script);font-size:clamp(46px,13vw,62px);color:#fff;line-height:1.1;text-shadow:0 3px 20px rgba(0,0,0,0.5);}
+    .hero-names-text{font-family:var(--f-script);font-size:clamp(36px,10vw,48px);color:#fff;line-height:1;text-shadow:0 3px 20px rgba(0,0,0,0.5);}
     .hero-names-and{display:block;font-size:0.5em;font-family:var(--f-title);font-style:italic;color:var(--gold-light);margin:3px 0;}
 
     /* ═══════════════════════════════════════════
@@ -567,10 +567,14 @@
     #lbNext{right:10px;}
     .lb-ctr{position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.35);letter-spacing:2px;}
 
+    @media(min-width:768px){
+      .hero-names-text{margin-left:-80px; margin-right:80px;}
+    }
+
     @media(max-width:440px){
       .gate-we-title{font-size:36px;}
       .gate-main-title{font-size:20px;letter-spacing:5px;}
-      .hero-names-text{font-size:44px;}
+      .hero-names-text{font-size:36px;}
       .glass-invite-card{width:162px;}
       .comment-stream{width:calc(100% - 32px); left:16px; transform:none;}
       .pf-row1,.pf-row2{padding:0 14px 10px;}
